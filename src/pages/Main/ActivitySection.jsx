@@ -5,14 +5,13 @@ import CardContainer from "./CardContainer";
 import {Divider} from "react-native-paper";
 import ListItem from "./ListItem";
 import {Column} from "react-smart-layout";
+import SectionContainer from "./SectionContainer";
 
 const ActivitySection = (props) => {
   return (
-    <Div
-      flex={1}
-      p={"xl"}
-    >
-      <CardContainer
+    <SectionContainer
+      title={"Sua atividade"}
+      card={() => <CardContainer
         h={65}
         p={0}
         bg={"white"}
@@ -33,9 +32,8 @@ const ActivitySection = (props) => {
             Conta
           </Text>
         </Div>
-      </CardContainer>
-      <Div h={30}/>
-
+      </CardContainer>}
+    >
       <Column
         space={20}
         divider={<Divider/>}
@@ -100,7 +98,7 @@ const ActivitySection = (props) => {
           right={<RightItem price={"R$ 20"} date={"11 jun, 19h"}/>}
         />
       </Column>
-    </Div>
+    </SectionContainer>
   )
 };
 

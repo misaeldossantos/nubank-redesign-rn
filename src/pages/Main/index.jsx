@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {Div, Icon, Image, Text} from "react-native-magnus";
-import {Pressable, StatusBar} from "react-native";
-import PagerView from 'react-native-pager-view';
+import {Pressable, StatusBar, View} from "react-native";
 import CreditCardSection from "./CreditCardSection";
 import NuAccountSection from "./NuAccountSection";
 import {observer, Observer, useLocalObservable} from "mobx-react";
@@ -14,9 +13,9 @@ import Animated, {
   withTiming
 } from "react-native-reanimated";
 import {reaction} from "mobx";
-import {debounce} from 'lodash'
 import ActivitySection from "./ActivitySection";
 import ProfileSection from "./ProfileSection";
+import ViewPager from '@react-native-community/viewpager';
 
 const Main = (props) => {
 
@@ -84,7 +83,7 @@ const Main = (props) => {
   function calculateWidthValue(value) {
     let nextTab = ctrl.currentTab
     const perc = value - ctrl.currentTab
-    if (perc > 0.3 && perc < 0.6) {
+    if (perc > 0.4 && perc < 0.8) {
       tabAnimWidth.value = 60
       return
     }
@@ -138,17 +137,9 @@ const Main = (props) => {
         bg={"primary"}
         flex={1}
       >
-        <Image
-          source={require("../../../assets/icon-white.png")}
-          w={60}
-          h={50}
-          resizeMode={"contain"}
-          alignSelf={"center"}
-          mt={"2xl"}
-        />
-        <PagerView
+        <ViewPager
           ref={pagerRef}
-          style={{flex: 1}}
+          style={{flex: 1, flexGrow: 1}}
           initialPage={0}
           onPageScroll={ev => {
             tabAnimX.value = ev.nativeEvent.position + ev.nativeEvent.offset
@@ -157,11 +148,19 @@ const Main = (props) => {
             ctrl.currentTab = ev.nativeEvent.position
           }}
         >
-          <CreditCardSection/>
-          <NuAccountSection/>
-          <ActivitySection />
-          <ProfileSection />
-        </PagerView>
+          <View>
+            <CreditCardSection/>
+          </View>
+          <View>
+            <NuAccountSection/>
+          </View>
+          <View>
+            <ActivitySection/>
+          </View>
+          <View>
+            <ProfileSection/>
+          </View>
+        </ViewPager>
 
       </Div>
       <Div

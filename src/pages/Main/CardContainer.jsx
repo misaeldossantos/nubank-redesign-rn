@@ -1,19 +1,20 @@
 import React from 'react';
-import {Div} from "react-native-magnus";
+import AnimatedDiv from "./AnimatedDiv";
 
-const CardContainer = ({children, ...props}) => {
+const CardContainer = ({children, animStyle, ...props}) => {
  return (
-   <Div
+   <AnimatedDiv
      p={"xl"}
      rounded={"xl"}
      overflow={"hidden"}
      shadow={"md"}
-     h={210}
+     style={animStyle}
      {...props}
    >
      {children}
-   </Div>
+   </AnimatedDiv>
  )
 };
+
 
 export default CardContainer;

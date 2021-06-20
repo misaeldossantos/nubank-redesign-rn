@@ -5,16 +5,25 @@ import {StyleSheet} from "react-native";
 import chroma from 'chroma-js'
 import CardContainer from "./CardContainer";
 import theme from "../../core/styles/theme";
+import {interpolate, useAnimatedStyle, useDerivedValue, withTiming} from "react-native-reanimated";
+import AnimatedDiv from "./AnimatedDiv";
 
-const CreditCard = (props) => {
+const CreditCard = ({ animStyle, scrollY }) => {
 
   const colors = useMemo(() => {
     const color = chroma(theme.colors.primary)
     return [color.luminance(0.1).css(), color.darken(0.5).css()]
   }, [theme.colors.primary])
 
+  const bottomStyle = useAnimatedStyle(() => {
+    const opened = scrollY.value < 30
+    return {
+      opacity: withTiming(opened? 1: 0, {duration: 300})
+    }
+  })
+
   return (
-    <CardContainer>
+    <CardContainer animStyle={animStyle} scrollY={scrollY}>
       <LinearGradient
         // Background Linear Gradient
         colors={colors}
@@ -62,7 +71,12 @@ const CreditCard = (props) => {
           </Text>
         </Div>
 
-        <Div column>
+        <AnimatedDiv
+          column
+          style={bottomStyle}
+          position={"absolute"}
+          bottom={0}
+        >
           <Text
             color={"white"}
             fontSize={14}
@@ -92,7 +106,7 @@ const CreditCard = (props) => {
               9137
             </Text>
           </Div>
-        </Div>
+        </AnimatedDiv>
       </Div>
     </CardContainer>
   )

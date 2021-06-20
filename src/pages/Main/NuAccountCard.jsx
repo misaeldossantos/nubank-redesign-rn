@@ -2,12 +2,22 @@ import React from 'react';
 import {Div, Icon, Text} from "react-native-magnus";
 import CardContainer from "./CardContainer";
 import {Column} from "react-smart-layout";
+import {useAnimatedStyle, withTiming} from "react-native-reanimated";
+import AnimatedDiv from "./AnimatedDiv";
 
-const CreditCard = (props) => {
+const CreditCard = ({ animStyle, scrollY }) => {
+
+  const bottomStyle = useAnimatedStyle(() => {
+    const opened = scrollY.value < 50
+    return {
+      opacity: withTiming(opened? 1: 0, {duration: 300})
+    }
+  })
 
   return (
     <CardContainer
       bg={"white"}
+      animStyle={animStyle}
     >
       <Div
         column
@@ -49,7 +59,7 @@ const CreditCard = (props) => {
           </Text>
         </Div>
 
-        <Div row justifyContent={"space-between"}>
+        <AnimatedDiv style={bottomStyle} row justifyContent={"space-between"}>
           <Column space={5}>
             <Text
               color={"gray800"}
@@ -78,7 +88,7 @@ const CreditCard = (props) => {
               R$ 100,00
             </Text>
           </Column>
-        </Div>
+        </AnimatedDiv>
       </Div>
     </CardContainer>
   )
