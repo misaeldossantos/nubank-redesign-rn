@@ -97,6 +97,65 @@ const ActivitySection = (props) => {
           description={"Compra no crédito"}
           right={<RightItem price={"R$ 20"} date={"11 jun, 19h"}/>}
         />
+        <ListItem
+          icon={<Icon
+            fontFamily={"Entypo"}
+            color={"white"}
+            name={"video"}
+            fontSize={"xl"}
+          />}
+          label={"Netflix"}
+          description={"Compra no crédito"}
+          right={<RightItem price={"R$ 41,00"} date={"Hoje, 8h"}/>}
+        />
+
+        <ListItem
+          icon={<Icon
+            fontFamily={"FontAwesome5"}
+            color={"white"}
+            name={"piggy-bank"}
+            fontSize={"xl"}
+          />}
+          label={"Depósito"}
+          description={"Crédito em conta"}
+          right={<RightItem price={"R$ 100"} date={"Ontem, 19h"}/>}
+        />
+
+        <ListItem
+          icon={<Icon
+            fontFamily={"AntDesign"}
+            color={"white"}
+            name={"creditcard"}
+            fontSize={"xl"}
+          />}
+          label={"Pagamento da fatura"}
+          description={"Limite liberado"}
+          right={<RightItem price={"R$ 900"} date={"16 jun, 19h"}/>}
+        />
+
+        <ListItem
+          icon={<Icon
+            fontFamily={"AntDesign"}
+            color={"white"}
+            name={"creditcard"}
+            fontSize={"xl"}
+          />}
+          label={"Fatura gerada"}
+          description={"Fechamento de ciclo"}
+          right={<RightItem price={"R$ 900"} date={"15 jun, 19h"}/>}
+        />
+
+        <ListItem
+          icon={<Icon
+            fontFamily={"AntDesign"}
+            color={"white"}
+            name={"car"}
+            fontSize={"xl"}
+          />}
+          label={"Uber"}
+          description={"Compra no crédito"}
+          right={<RightItem price={"R$ 20"} date={"11 jun, 19h"}/>}
+        />
       </Column>
     </SectionContainer>
   )

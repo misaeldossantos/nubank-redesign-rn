@@ -1,10 +1,11 @@
 import React from 'react';
 import {Div} from "react-native-magnus";
 import Animated, {
+ Extrapolate,
+ interpolate,
  useAnimatedScrollHandler,
  useAnimatedStyle,
- useSharedValue,
- withTiming
+ useSharedValue
 } from "react-native-reanimated";
 import TopHeader from "./TopHeader";
 
@@ -16,23 +17,8 @@ const SectionContainer = ({ children, card, title, cardHeight, shortCardHeight =
  });
 
  const cardStyle = useAnimatedStyle(() => {
-  const closed = translationY.value >= 50? 1: 0
   return {
-   position: "absolute",
-   right: 0,
-   left: 0,
-   overflow: 'hidden',
-   height: withTiming(closed === 1? shortCardHeight: cardHeight, { duration: 300 })
-   // transform: [{
-   //  scale: interpolate(translationY.value, [0, 300], [1, 0.9], Extrapolate.CLAMP)
-   // }],
-  }
- })
-
- const scrollStyle = useAnimatedStyle(() => {
-  return {
-   marginTop: shortCardHeight,
-   paddingTop: cardHeight - shortCardHeight? shortCardHeight: 0
+   height: interpolate(translationY.value, [0, 200], [cardHeight, shortCardHeight], Extrapolate.CLAMP)
   }
  })
 
@@ -50,21 +36,19 @@ const SectionContainer = ({ children, card, title, cardHeight, shortCardHeight =
 
      <Div
        m={"xl"}
+       position={"relative"}
      >
       <Card animStyle={cardStyle} scrollY={translationY} />
      </Div>
 
     <Animated.ScrollView
-      style={scrollStyle}
-      contentContainerStyle={{ flexGrow: 1 }}
+      contentContainerStyle={{ flexGrow: 1, zIndex: -100 }}
       showsVerticalScrollIndicator={false}
       onScroll={scrollHandler}
-      fadingEdgeLength={50}
+      fadingEdgeLength={FADING_EDGE_LENGTH}
       overScrollMode={"never"}
     >
      <Div
-       bg={"primary"}
-       zIndex={1000}
        px={"xl"}
        pt={0}
        rounded={"2xl"}
@@ -76,5 +60,7 @@ const SectionContainer = ({ children, card, title, cardHeight, shortCardHeight =
    </Div>
  )
 };
+
+const FADING_EDGE_LENGTH = 50
 
 export default SectionContainer;

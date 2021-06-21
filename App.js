@@ -12,10 +12,15 @@ import {
 } from '@expo-google-fonts/montserrat';
 import Main from "./src/pages/Main";
 import {configure} from "mobx";
+import {NavigationContainer} from "@react-navigation/native";
+import {createSharedElementStackNavigator} from "react-navigation-shared-element";
+import CreditCardDetailsPage from "./src/pages/CreditCardDetailsPage";
 
 configure({
   enforceActions: "never"
 })
+
+const Stack = createSharedElementStackNavigator();
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -33,7 +38,42 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Main />
+      <NavigationContainer>
+        <Stack.Navigator
+          mode={"modal"}
+          screenOptions={{
+            headerShown: false,
+            useNativeDriver: true,
+            gestureEnabled: false,
+            cardStyleInterpolator: ({current: {progress}}) => ({
+              cardStyle: {
+                opacity: progress,
+              },
+            }),
+          }}
+        >
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            // sharedElementsConfig={(route, otherRoute, showing) => {
+            //   if(otherRoute.name === "CreditCardDetails") {
+            //     return [{id: "creditCard"}];
+            //   }
+            //   return []
+            // }}
+          />
+          <Stack.Screen
+            name="CreditCardDetails"
+            component={CreditCardDetailsPage}
+            sharedElementsConfig={(route, otherRoute, showing) => {
+              // if(otherRoute.name === "Main") {
+              //   return [{id: "creditCard"}];
+              // }
+              return ["creditCard"]
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </ThemeProvider>
   );
 }

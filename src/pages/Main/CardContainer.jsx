@@ -8,6 +8,7 @@ const CardContainer = ({children, animStyle, ...props}) => {
      rounded={"xl"}
      overflow={"hidden"}
      shadow={"md"}
+     zIndex={1}
      style={animStyle}
      {...props}
    >

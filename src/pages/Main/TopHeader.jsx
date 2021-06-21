@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react';
 import {Div, Image, Text} from "react-native-magnus";
 import Animated, {Extrapolate, interpolate, useAnimatedStyle, withTiming} from "react-native-reanimated";
+import {TouchableOpacity} from "react-native";
 
 const TopHeader = ({scrollY, title}) => {
 
