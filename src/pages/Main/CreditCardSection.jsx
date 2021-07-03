@@ -49,6 +49,9 @@ const CreditCardSection = (props) => {
             name={"creditcard"}
             fontSize={"xl"}
           />}
+          onPress={() => {
+            navigation.push("AdjustLimit")
+          }}
           label={"Limite disponível"}
           right={<Text color={"green600"} fontFamily={"bold"}>
             R$ 520,00

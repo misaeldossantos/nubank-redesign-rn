@@ -15,6 +15,7 @@ import {configure} from "mobx";
 import {NavigationContainer} from "@react-navigation/native";
 import {createSharedElementStackNavigator} from "react-navigation-shared-element";
 import CreditCardDetailsPage from "./src/pages/CreditCardDetailsPage";
+import AdjustLimitPage from "./src/pages/AdjustLimitPage";
 
 configure({
   enforceActions: "never"
@@ -71,6 +72,10 @@ export default function App() {
               // }
               return ["creditCard"]
             }}
+          />
+          <Stack.Screen
+            name="AdjustLimit"
+            component={AdjustLimitPage}
           />
         </Stack.Navigator>
       </NavigationContainer>
