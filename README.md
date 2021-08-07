@@ -19,7 +19,7 @@ Project made with Expo
 
 ### Demo
 
-<p align="center">
+<p>
   <img alt="Screen recording" src="demo/screen-recording.gif" width="300" />
   <img alt="Screen 1" src="demo/1.jpg" width="300" />
   <img alt="Screen 2" src="demo/2.jpg" width="300"/>
