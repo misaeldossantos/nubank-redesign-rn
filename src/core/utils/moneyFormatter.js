@@ -1,5 +1,6 @@
 import {memoize} from 'lodash'
 import numeral from 'numeral'
+import 'numeral/locales'
 
 numeral.locale("pt-br");
 
