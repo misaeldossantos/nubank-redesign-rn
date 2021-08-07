@@ -1,5 +1,5 @@
 <h1 align="center">
-  Nubank redesign built in React Native
+  Nubank redesign built with React Native
 </h1>
 
 This design was made by Diego David (https://www.behance.net/gallery/98848371/NuBank-App-Redesign). I decided to implement using react native, applying the new way of making animations with react-native-reanimated.
